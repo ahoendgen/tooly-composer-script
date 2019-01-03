@@ -84,6 +84,11 @@ class Processor
 
         $this->helper->getFilesystem()->createFile($filename, $data);
 
+        if($tool->getPubKeyUrl()) {
+            $data = $this->helper->getDownloader()->download($tool->getPubKeyUrl());
+            $this->helper->getFilesystem()->createFile($filename . ".pubkey", $data);
+        }
+
         $this->io->write(sprintf(
             '<info>File "%s" successfully downloaded!</info>',
             basename($filename)

@@ -21,6 +21,7 @@ class ToolFactory
         $defaults = [
             'url' => null,
             'sign-url' => null,
+            'pub-key-url' => null,
             'only-dev' => true,
             'force-replace' => false,
         ];
@@ -31,7 +32,8 @@ class ToolFactory
             $name,
             self::getFilename($name, $directory),
             $parameters['url'],
-            $parameters['sign-url']
+            $parameters['sign-url'],
+            $parameters['pub-key-url']
         );
 
         if (true === $parameters['force-replace']) {

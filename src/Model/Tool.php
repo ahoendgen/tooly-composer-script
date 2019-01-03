@@ -38,6 +38,11 @@ class Tool
     private $onlyDev = true;
 
     /**
+     * @var string
+     */
+    private $pubKeyUrl = "";
+
+    /**
      * @param string $name
      * @param string $filename
      * @param string $url
@@ -45,12 +50,13 @@ class Tool
      *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
-    public function __construct($name, $filename, $url, $signUrl = null)
+    public function __construct($name, $filename, $url, $signUrl = null, $pubKeyUrl = null)
     {
-        $this->name = $name;
-        $this->filename = $filename;
-        $this->url = $url;
-        $this->signUrl = $signUrl;
+        $this->name      = $name;
+        $this->filename  = $filename;
+        $this->url       = $url;
+        $this->signUrl   = $signUrl;
+        $this->pubKeyUrl = $pubKeyUrl;
     }
 
     /**
@@ -99,6 +105,14 @@ class Tool
     public function getSignUrl()
     {
         return $this->signUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPubKeyUrl()
+    {
+        return $this->pubKeyUrl;
     }
 
     /**
