@@ -101,6 +101,9 @@ You can add the requirement with this command:
 This check often fails if you dont has the public key from the tool author 
 in your GPG keychain. 
 
+### pub-key-url (optional, default none)
+Download the public key of an phar to validate it e.g. a signed [box](https://box-project.github.io/box2/) phar
+
 ### force-replace (optional, default false)
 
 Every time you update or install with composer the phar tools are checked. You are asked if you want to overwrite
