@@ -2,6 +2,7 @@
 
 namespace Tooly\Tests\Script\Helper;
 
+use Composer\Util\Platform;
 use org\bovigo\vfs\vfsStream;
 use phpmock\phpunit\PHPMock;
 use Tooly\Script\Helper\Filesystem;
@@ -42,9 +43,21 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
 
     public function testCanRelativeSymlinkAFile()
     {
-        $symlink = $this->testDirectory . DIRECTORY_SEPARATOR . '/foo/symlink';
+        if (Platform::isWindows()) {
+            $this->markTestSkipped('Symlink not possible on Windows.');
+        }
+
+        $symlink = $this->testDirectory . DIRECTORY_SEPARATOR . '/foo/symlinkOrCopy';
 
         $this->assertTrue($this->filesystem->symlinkFile($this->testFile, $symlink));
         $this->assertNotEquals('/', substr(readlink($symlink), '0', 1));
+    }
+
+    public function testCanCopyAFile()
+    {
+        $copy = $this->testDirectory . DIRECTORY_SEPARATOR . 'copy';
+
+        $this->assertTrue($this->filesystem->createFile($this->testFile, ''));
+        $this->assertTrue($this->filesystem->copyFile($this->testFile, $copy));
     }
 }

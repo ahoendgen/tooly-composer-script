@@ -43,11 +43,20 @@ class Tool
     private $pubKeyUrl = "";
 
     /**
+     * @var bool
+     */
+    private $rename = false;
+
+    /**
+     * @var string
+     */
+    private $fallbackUrl;
+
+    /**
      * @param string $name
      * @param string $filename
      * @param string $url
      * @param string $signUrl
-     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct($name, $filename, $url, $signUrl = null, $pubKeyUrl = null)
@@ -129,5 +138,39 @@ class Tool
     public function forceReplace()
     {
         return $this->forceReplace;
+    }
+
+    /**
+     * @return void
+     */
+    public function setNameToToolKey()
+    {
+        $this->rename = true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function renameToConfigKey()
+    {
+        return $this->rename;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return void
+     */
+    public function setFallbackUrl($url)
+    {
+        $this->fallbackUrl = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFallbackUrl()
+    {
+        return $this->fallbackUrl;
     }
 }

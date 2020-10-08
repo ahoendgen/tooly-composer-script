@@ -7,8 +7,7 @@
     "phar-management",
     "composer-phar",
     "phar",
-    "phar-handling",
-    "gpg-verification"
+    "phar-handling"
   ],
   "homepage": "https://github.com/tommy-muehle/tooly-composer-script",
   "authors": [
@@ -46,9 +45,7 @@
     "composer/composer": "1.*",
     "symfony/console": "^3.0",
     "mikey179/vfsstream": "1.6.*",
-    "tm/gpg-verifier": "1.*",
-    "php-mock/php-mock-phpunit": "1.1.*",
-    "codeclimate/php-test-reporter": "dev-master"
+    "php-mock/php-mock-phpunit": "1.1.*"
   },
   "scripts": {
     "post-install-cmd": "Tooly\\ScriptHandler::installPharTools",
@@ -57,7 +54,7 @@
   "extra": {
     "tools": {
       "phpunit": {
-        "url": "https://phar.phpunit.de/phpunit-5.5.0.phar"
+        "url": "https://phar.phpunit.de/phpunit-5.7.27.phar"
       },
       "phpcpd": {
         "url": "https://phar.phpunit.de/phpcpd-2.0.4.phar"
@@ -68,6 +65,7 @@
       },
       "phpmd": {
         "url": "http://static.phpmd.org/php/latest/phpmd.phar",
+        "fallback-url": "https://github.com/jakzal/phpmd/releases/download/2.6.0-jakzal-2/phpmd.phar",
         "force-replace": true
       },
       "security-checker": {

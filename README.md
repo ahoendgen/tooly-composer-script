@@ -4,8 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/tm/tooly-composer-script/v/stable)](https://packagist.org/packages/tm/tooly-composer-script)
 [![Total Downloads](https://poser.pugx.org/tm/tooly-composer-script/downloads)](https://packagist.org/packages/tm/tooly-composer-script)
 [![Build Status](https://travis-ci.org/tommy-muehle/tooly-composer-script.svg?branch=master)](https://travis-ci.org/tommy-muehle/tooly-composer-script)
-[![Code Climate](https://codeclimate.com/github/tommy-muehle/tooly-composer-script/badges/gpa.svg)](https://codeclimate.com/github/tommy-muehle/tooly-composer-script)
-[![Test Coverage](https://codeclimate.com/github/tommy-muehle/tooly-composer-script/badges/coverage.svg)](https://codeclimate.com/github/tommy-muehle/tooly-composer-script/coverage)
+[![Build status](https://ci.appveyor.com/api/projects/status/l1xixknycxctd1sm?svg=true)](https://ci.appveyor.com/project/tommy-muehle/tooly-composer-script)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d895d331-4322-4708-8924-d80c32d3fb17/mini.png)](https://insight.sensiolabs.com/projects/d895d331-4322-4708-8924-d80c32d3fb17)
 [![License](https://poser.pugx.org/tm/tooly-composer-script/license)](https://packagist.org/packages/tm/tooly-composer-script)
 [![Gitter](https://badges.gitter.im/tommy-muehle/tooly-composer-script.svg)](https://gitter.im/tommy-muehle/tooly-composer-script?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -67,7 +66,8 @@ In this part you can add your needed phar tools under the key "tools".
       },
       "phpcpd": {
         "url": "https://phar.phpunit.de/phpcpd-2.0.4.phar",
-        "only-dev": true
+        "only-dev": true,
+        "rename": true
       },
       "security-checker": {
         "url": "http://get.sensiolabs.org/security-checker.phar",
@@ -86,6 +86,10 @@ In this part you can add your needed phar tools under the key "tools".
 After you add the name of the tool as key, you need only one further parameter. The *"url"*.
 The url can be a link to a specific version, such as x.y.z, or a link to the latest version for this phar.
 
+### rename (optional, default false)
+
+Rename the downloaded tool to the name that is used as key.
+
 ### sign-url (optional, default none)
 
 If this parameter is set tooly checks if the PHAR file in url has a valid signature by 
@@ -100,6 +104,13 @@ You can add the requirement with this command:
 
 This check often fails if you dont has the public key from the tool author 
 in your GPG keychain. 
+
+### fallback-url (optional, default none)
+
+This option is useful if you want to add an extra layer of stability to your daily build processes.
+
+In case the required url is not accessible and a `fallback-url` is set, tooly uses the fallback url to download the phar file. 
+The fallback url can be a link to a specific version, such as x.y.z, or a link to the latest version for this phar.
 
 ### pub-key-url (optional, default none)
 Download the public key of an phar to validate it e.g. a signed [box](https://box-project.github.io/box2/) phar
@@ -122,13 +133,6 @@ This parameter means that this phar is only needed in developing mode.
 So the command ```composer [install|update] --no-dev``` ignores this phar tool.
 
 **Note: Therefore tooly must be a [no-dev requirement](https://getcomposer.org/doc/04-schema.md#require)** 
-
-## Postcardware
-
-You're free to use this package (it's [MIT-licensed](LICENSE)), but if it makes you happy it would be a great pleasure for me if you send a postcard from your hometown to me.
-My address is: Tommy Muehle, Hepkestr. 177, 01277 Dresden, Germany.
-
-The postcards will get published on [my website](https://tommy-muehle.io).
 
 ## A note to PhpStorm or other IDE users
 
